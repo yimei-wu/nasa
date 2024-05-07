@@ -23,9 +23,9 @@ const DateNavigation = () => {
   return (
     <>
       <div className="date-navigation">
-        <button onClick={() => handleDate(-1)}>prev</button>
+        <button onClick={() => handleDate(-1)}>&larr;</button>
         <span>{dateFormatted}</span>
-        <button onClick={() => handleDate(1)}>next</button>
+        <button onClick={() => handleDate(1)}>&rarr;</button>
       </div>
     </>
   );
