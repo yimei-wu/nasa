@@ -27,6 +27,8 @@ function App() {
         setData(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
