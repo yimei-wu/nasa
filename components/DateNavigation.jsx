@@ -1,11 +1,21 @@
+import { useState } from "react";
+
 const DateNavigation = () => {
+  const [date, setDate] = useState(new Date());
+
   const currentDate = new Date();
-  console.log(currentDate);
+  const dateFormatted = currentDate.toLocaleDateString("it-IT", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <>
       <div className="date-navigation">
         <button>prev</button>
-        <span>{currentDate.toString()}</span>
+        <span>{dateFormatted}</span>
         <button>next</button>
       </div>
     </>
