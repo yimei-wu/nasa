@@ -9,4 +9,4 @@ https://api.nasa.gov/planetary/apod
 
 ## Desciption
 
-Image gallery with NASA picture of the day. You can also view photos from different days through the navbar.
+Image gallery with NASA picture of the day. You can also view photos from different days through the buttons in the navbar.
