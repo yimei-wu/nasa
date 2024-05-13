@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import DateNavigation from "../components/DateNavigation";
+import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -39,10 +40,41 @@ function App() {
 
   console.log(currentDate);
   return (
-    <>
-      <div>{isLoading ? <h2>Is Loading...</h2> : <h2>{data.title}</h2>}</div>
+    <div>
+      <div className="tidy-up">
+        <AnimatePresence>
+          {isLoading ? (
+            <motion.img
+              src="/8419d4ae13f86f040204f83ed6da3d0d.png"
+              alt="is loading"
+              className="load"
+              initial={{ opacity: 0, rotate: 0 }}
+              animate={{ opacity: 1, rotate: 360 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.5,
+                repeat: Infinity,
+                repeatType: "loop",
+              }}
+            />
+          ) : (
+            <div>
+              <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                {data.title}
+              </motion.h2>
+              <motion.img
+                src={data.url}
+                alt="nasa_image"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              />
+            </div>
+          )}
+        </AnimatePresence>
+      </div>
+
       <DateNavigation setCurrentDate={setCurrentDate} />
-    </>
+    </div>
   );
 }
 
