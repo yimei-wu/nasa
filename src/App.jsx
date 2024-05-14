@@ -39,8 +39,10 @@ function App() {
   }, [currentDate]);
 
   console.log(currentDate);
+  console.log(data);
   return (
     <div>
+      <DateNavigation setCurrentDate={setCurrentDate} />
       <div className="tidy-up">
         <AnimatePresence>
           {isLoading ? (
@@ -48,9 +50,10 @@ function App() {
               src="/8419d4ae13f86f040204f83ed6da3d0d.png"
               alt="is loading"
               className="load"
-              initial={{ opacity: 0, rotate: 0 }}
-              animate={{ opacity: 1, rotate: 360 }}
-              exit={{ opacity: 0 }}
+              key={isLoading}
+              initial={{ rotate: 0 }}
+              animate={{ rotate: 360 }}
+              // exit={{ opacity: 0 }}
               transition={{
                 duration: 0.5,
                 repeat: Infinity,
@@ -68,12 +71,13 @@ function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               />
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                {data.explanation}
+              </motion.p>
             </div>
           )}
         </AnimatePresence>
       </div>
-
-      <DateNavigation setCurrentDate={setCurrentDate} />
     </div>
   );
 }
