@@ -19,7 +19,7 @@ function App() {
             import.meta.env.VITE_NASA_API_KEY
           }&date=${formatDate(currentDate)}`
         );
-        // se la response non è andata ok
+        // // se la response non è andata ok
         if (!response.ok) {
           // allora mostra il perché no
           throw new Error(`qualcosa è andato storto: ${response.status}`);
@@ -38,28 +38,32 @@ function App() {
     fetchNasaData();
   }, [currentDate]);
 
-  console.log(currentDate);
-  console.log(data);
   return (
     <div>
       <DateNavigation setCurrentDate={setCurrentDate} />
       <div className="tidy-up">
         <AnimatePresence>
           {isLoading ? (
-            <motion.img
-              src="/8419d4ae13f86f040204f83ed6da3d0d.png"
-              alt="is loading"
-              className="load"
+            <motion.div
               key={isLoading}
-              initial={{ rotate: 0 }}
-              animate={{ rotate: 360 }}
-              // exit={{ opacity: 0 }}
-              transition={{
-                duration: 0.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-            />
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="loading-container"
+            >
+              <motion.img
+                src="/8419d4ae13f86f040204f83ed6da3d0d.png"
+                alt="is loading"
+                className="load"
+                initial={{ rotate: 0 }}
+                animate={{ rotate: 360 }}
+                transition={{
+                  repeat: Infinity,
+                  ease: "linear",
+                  duration: 2,
+                }}
+              />
+            </motion.div>
           ) : (
             <div>
               <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
